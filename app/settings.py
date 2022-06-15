@@ -41,9 +41,7 @@ INSTALLED_APPS = [
 
 # local apps
 
-INSTALLED_APPS += [
-    "user",
-]
+INSTALLED_APPS += ["user", "blog"]
 
 # third party apps
 

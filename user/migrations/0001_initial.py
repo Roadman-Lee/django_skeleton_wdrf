@@ -9,37 +9,75 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('username', models.CharField(max_length=20, unique=True, verbose_name='사용자 계정')),
-                ('email', models.EmailField(max_length=100, unique=True, verbose_name='이메일 주소')),
-                ('password', models.CharField(max_length=250, verbose_name='비밀번호')),
-                ('join_date', models.DateTimeField(auto_now_add=True, verbose_name='가입일')),
-                ('is_active', models.BooleanField(default=True)),
-                ('is_admin', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "last_login",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="last login"
+                    ),
+                ),
+                (
+                    "username",
+                    models.CharField(max_length=20, unique=True, verbose_name="사용자 계정"),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        max_length=100, unique=True, verbose_name="이메일 주소"
+                    ),
+                ),
+                ("password", models.CharField(max_length=250, verbose_name="비밀번호")),
+                (
+                    "join_date",
+                    models.DateTimeField(auto_now_add=True, verbose_name="가입일"),
+                ),
+                ("is_active", models.BooleanField(default=True)),
+                ("is_admin", models.BooleanField(default=False)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='UserProfile',
+            name="UserProfile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fullname', models.CharField(max_length=20, verbose_name='이름')),
-                ('nickname', models.CharField(max_length=20, verbose_name='별명')),
-                ('zipcode', models.CharField(max_length=10)),
-                ('address', models.CharField(max_length=255, verbose_name='주소')),
-                ('introduction', models.TextField(verbose_name='소개')),
-                ('birthday', models.DateField(verbose_name='생일')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='사용자')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("fullname", models.CharField(max_length=20, verbose_name="이름")),
+                ("nickname", models.CharField(max_length=20, verbose_name="별명")),
+                ("zipcode", models.CharField(max_length=10)),
+                ("address", models.CharField(max_length=255, verbose_name="주소")),
+                ("introduction", models.TextField(verbose_name="소개")),
+                ("birthday", models.DateField(verbose_name="생일")),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="사용자",
+                    ),
+                ),
             ],
         ),
     ]
