@@ -31,6 +31,7 @@ class User(AbstractBaseUser):
     email = models.EmailField("이메일 주소", max_length=100, unique=True)
     password = models.CharField("비밀번호", max_length=250)
     join_date = models.DateTimeField("가입일", auto_now_add=True)
+    permission_level = models.PositiveIntegerField("권한", default=0)
 
     # is_active가 False일 경우 계정이 비활성화됨
     is_active = models.BooleanField(default=True)
@@ -77,3 +78,7 @@ class UserProfile(models.Model):
     address = models.CharField("주소", max_length=255)
     introduction = models.TextField("소개")
     birthday = models.DateField("생일")
+
+
+class Hobby(models.Model):
+    name = models.CharField("취미", max_length=100)
