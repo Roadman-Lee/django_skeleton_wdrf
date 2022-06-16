@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('user', '0003_hobby'),
+        ("user", "0003_hobby"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='userprofile',
-            name='hobby',
-            field=models.ManyToManyField(to='user.hobby', verbose_name='취미'),
+            model_name="userprofile",
+            name="hobby",
+            field=models.ManyToManyField(to="user.hobby", verbose_name="취미"),
         ),
     ]
