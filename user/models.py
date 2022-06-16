@@ -73,6 +73,7 @@ class UserProfile(models.Model):
         settings.AUTH_USER_MODEL, verbose_name="사용자", on_delete=models.CASCADE
     )
     fullname = models.CharField("이름", max_length=20)
+    hobby = models.ManyToManyField(to="Hobby", verbose_name="취미")
     nickname = models.CharField("별명", max_length=20)
     zipcode = models.CharField(max_length=10)
     address = models.CharField("주소", max_length=255)
