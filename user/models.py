@@ -3,7 +3,6 @@ from django.db import models
 
 from app import settings
 
-
 # custom user model 사용 시 UserManager 클래스와 create_user, create_superuser 함수가 정의되어 있어야 함
 
 
@@ -83,3 +82,6 @@ class UserProfile(models.Model):
 
 class Hobby(models.Model):
     name = models.CharField("취미", max_length=100)
+
+    def __str__(self):
+        return self.name
