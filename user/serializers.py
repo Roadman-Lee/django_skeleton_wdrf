@@ -9,10 +9,36 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = "__all__"
 
+
+class UserArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = "__all__"
+
+
 class UserSerializer(serializers.ModelSerializer):
-    user_profile = UserProfileSerializer()
+    userprofile = UserProfileSerializer()
+    article_set = UserArticleSerializer(many=True)
 
     class Meta:
         model = User
-        fields = "__all__"
+        fields = (
+            "username",
+            "email",
+            "password",
+            "join_date",
+            "userprofile",
+            "article_set",
+        )
+        extra_kwargs = {
+            "password": {"write_only": True},
+        }
 
+
+class UserCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("username", "email", "password", "join_date")
+        extra_kwargs = {
+            "password": {"write_only": True},
+        }
