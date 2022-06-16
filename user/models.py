@@ -3,7 +3,6 @@ from django.db import models
 
 from app import settings
 
-
 # custom user model 사용 시 UserManager 클래스와 create_user, create_superuser 함수가 정의되어 있어야 함
 
 
@@ -31,6 +30,7 @@ class User(AbstractBaseUser):
     email = models.EmailField("이메일 주소", max_length=100, unique=True)
     password = models.CharField("비밀번호", max_length=250)
     join_date = models.DateTimeField("가입일", auto_now_add=True)
+    permission_level = models.PositiveIntegerField("권한", default=0)
 
     # is_active가 False일 경우 계정이 비활성화됨
     is_active = models.BooleanField(default=True)
@@ -72,8 +72,16 @@ class UserProfile(models.Model):
         settings.AUTH_USER_MODEL, verbose_name="사용자", on_delete=models.CASCADE
     )
     fullname = models.CharField("이름", max_length=20)
+    hobby = models.ManyToManyField(to="Hobby", verbose_name="취미")
     nickname = models.CharField("별명", max_length=20)
     zipcode = models.CharField(max_length=10)
     address = models.CharField("주소", max_length=255)
     introduction = models.TextField("소개")
     birthday = models.DateField("생일")
+
+
+class Hobby(models.Model):
+    name = models.CharField("취미", max_length=100)
+
+    def __str__(self):
+        return self.name

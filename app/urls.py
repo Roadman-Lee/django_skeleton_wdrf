@@ -15,9 +15,18 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.templatetags.static import static
 from django.urls import include, path
+
+from app import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("user/", include("user.urls")),
+    path("blog/", include("blog.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        path("api-auth/", include("rest_framework.urls")),
+    ]
